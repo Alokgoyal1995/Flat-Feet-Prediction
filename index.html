@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic Meta -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mittal's Physiofit - Flat Feet Prediction</title>
+    <meta name="description"
+        content="Mittal's Physiofit offers expert physiotherapy services including advanced physiotherapy, sports rehab, neuro care, prenatal and postnatal rehabilitation, geriatric care, and more in Jaipur." />
+    <meta name="keywords"
+        content="physiotherapy in Jaipur, sports rehab, neuro care, prenatal physiotherapy, postnatal rehab, geriatric physiotherapy, Mittal's Physiofit" />
+    <meta name="author" content="Mittal's Physiofit" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Mittal's Physiofit - Expert Physiotherapy in Jaipur" />
+    <meta property="og:description"
+        content="Get expert physiotherapy services including sports rehab, neuro care, prenatal & postnatal rehabilitation, geriatric care and more at Mittal's Physiofit, Jaipur." />
+    <meta property="og:image" content="https://mittalsphysiofit.com/fevicon/android-chrome-512x512.png" />
+    <meta property="og:url" content="https://mittalsphysiofit.com" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mittal's Physiofit - Expert Physiotherapy in Jaipur" />
+    <meta name="twitter:description"
+        content="Expert physiotherapy services in Jaipur including sports rehab, neuro care, prenatal/postnatal rehabilitation, and more." />
+    <meta name="twitter:image" content="https://mittalsphysiofit.com/fevicon/android-chrome-512x512.png" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/fevicon/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/fevicon/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/fevicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/fevicon/android-chrome-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/fevicon/android-chrome-512x512.png" />
+    <link rel="shortcut icon" href="/fevicon/favicon.ico" type="image/x-icon" />
+    <link rel="manifest" href="/fevicon/site.webmanifest" />
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+    <!-- 4. Your Custom Styles -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- ✅ Preload for Faster Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <style>
+        :root {
+            --primary-color: #1173d4;
+            --secondary-color: #f8f9fa;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --accent-color: #38a169;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text-primary);
+        }
+
+        header {
+            background: #fff;
+            box-shadow: var(--shadow);
+        }
+
+        .navbar-brand img {
+            max-height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand img:hover {
+            transform: scale(1.05);
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            border: none;
+            border-radius: 50px;
+            padding: 12px 24px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #0d5cb6;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            background: #fff;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+            padding: 12px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(17, 115, 212, 0.1);
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, var(--primary-color), #60a5fa);
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .social-icons a {
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+
+        footer {
+            background: #fff;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .consultation-link {
+            color: #fed7d7;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        .consultation-link:hover {
+            color: #fff;
+        }
+
+        .copyright-badge {
+            display: inline-flex;
+            align-items: center;
+            background: #dc2626;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 12px;
+            margin-left: 10px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .copyright-badge:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 576px) {
+            .card {
+                margin: 0 15px;
+            }
+
+            .navbar-brand img {
+                max-height: 40px;
+            }
+
+            .copyright-badge {
+                margin-top: 10px;
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="d-flex flex-column min-vh-100">
+        <main class="flex-grow-1 container py-5">
+            <div class="text-center mb-5">
+                <p class="text-secondary">Mittal's Regression equation for <b> flat feet prediction </b> is copyright by
+                    <b>Dr Sachendra Kumar Mittal </b> Unauthorized use of reproduction is strictly prohibited
+                    without permission.
+                </p>
+                <span class="copyright-badge">© Copyright Protected</span>
+            </div>
+            <div class="card mx-auto" style="max-width: 600px;">
+                <div class="card-body p-5">
+                    <h2 class="card-title text-center h3 fw-bold">Flat Feet Prediction</h2>
+                    <p class="text-center text-secondary mt-2">Calculate your arch height difference based on BMI and
+                        height.</p>
+                    <form class="contact-form mt-4" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="596ce226-8162-426e-9c8b-123bffd29bc6">
+                        <input type="hidden" name="subject" value="Flat Feet Prediction Form Submission">
+                        <input type="hidden" name="result" id="result" value="">
+                        <div class="mb-4">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name"
+                                required />
+                        </div>
+                        <div class="mb-4">
+                            <label for="mobile" class="form-label">Mobile Number</label>
+                            <input type="tel" class="form-control" id="mobile" name="mobile"
+                                placeholder="Enter your mobile number" required />
+                        </div>
+                        <div class="mb-4">
+                            <label for="age" class="form-label">Age</label>
+                            <input type="number" class="form-control" id="age" name="age" placeholder="Enter your age"
+                                required />
+                        </div>
+                        <div class="mb-4">
+                            <label for="bmi" class="form-label">BMI</label>
+                            <input type="text" class="form-control" id="bmi" name="bmi" placeholder="Enter your BMI"
+                                required />
+                        </div>
+                        <div class="mb-4">
+                            <label for="height" class="form-label">Height (meters)</label>
+                            <input type="text" class="form-control" id="height" name="height"
+                                placeholder="Enter your height in meters" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 py-3">Calculate Now</button>
+                    </form>
+                </div>
+                <div class="card-footer bg-light p-4 border-top d-none" id="resultFooter">
+                    <h3 class="h5 fw-medium">Result</h3>
+                    <div class="result-card mt-3">
+                        <p class="mb-2">Your arch height difference is:</p>
+                        <p class="h2 fw-bold mb-0" id="resultValue">[Result]</p>
+                        <p class="mt-2 medium" id="resultInterpretation"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <p class="text-secondary">The criteria for predicting flat feet using Mittal’s Regression equation is a
+                    Navicular Drop (ND) of ≥ 10 mm. If the Navicular Drop is 10 mm or more, there is a higher chance of
+                    acquired flat feet.</p>
+            </div>
+        </main>
+        <footer class="bg-white py-4 text-center text-secondary">
+            <div class="container">
+                <p>© 2025 Mittal's Physiofit. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+    <script>
+        // Get DOM elements
+        const form = document.querySelector('form');
+        const nameInput = document.getElementById('name');
+        const mobileInput = document.getElementById('mobile');
+        const ageInput = document.getElementById('age');
+        const bmiInput = document.getElementById('bmi');
+        const heightInput = document.getElementById('height');
+        const resultInput = document.getElementById('result');
+        const resultFooter = document.getElementById('resultFooter');
+        const resultValue = document.getElementById('resultValue');
+        const resultInterpretation = document.getElementById('resultInterpretation');
+
+        // Event listener for form submission
+        form.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent default submission until validation
+
+            // Get input values
+            const name = nameInput.value.trim();
+            const mobile = mobileInput.value.trim();
+            const age = parseInt(ageInput.value);
+            const bmi = parseFloat(bmiInput.value);
+            const height = parseFloat(heightInput.value);
+
+            // Validate inputs
+            if (!name) {
+                alert('Please enter your name.');
+                return;
+            }
+            if (!mobile || !/^\d{10}$/.test(mobile)) {
+                alert('Please enter a valid 10-digit mobile number.');
+                return;
+            }
+            if (isNaN(age) || age <= 0) {
+                alert('Please enter a valid age.');
+                return;
+            }
+            if (isNaN(bmi) || bmi <= 0) {
+                alert('Please enter a valid positive number for BMI.');
+                return;
+            }
+            if (isNaN(height) || height <= 0) {
+                alert('Please enter a valid positive number for Height.');
+                return;
+            }
+
+            // Calculate arch height difference using the formula
+            const archHeightDifference = 0.731 * bmi - 0.471 * height - 8.93;
+
+            // Update hidden result input for email
+            resultInput.value = archHeightDifference.toFixed(4);
+
+            // Show the result footer and update the result in the DOM
+            resultFooter.classList.remove('d-none');
+            resultValue.textContent = `${archHeightDifference.toFixed(4)} mm`;
+
+            // Add interpretation based on Navicular Drop criteria
+            if (archHeightDifference >= 10) {
+                resultInterpretation.innerHTML = `Your Navicular Drop is more than 10 mm, which indicates Acquired flat feet. <br> We recommend booking a consultation at Mittal’s Physiofit Clinic for proper assessment and treatment. <br>
+                <p class="text-center mt-3"> <a href="bookappoitment.html" class="cta-button-ap mt-4">✨ Schedule Your Appointment Today</a>
+                     </p>`;
+                resultInterpretation.style.color = '#fff';
+            } else {
+                resultInterpretation.innerHTML = `Your Navicular Drop is less than 10 mm, which suggests your feet are normal and fit. <br> No treatment is required at this stage.`;
+                resultInterpretation.style.color = '#c6f6d5';
+            }
+
+            // Smooth scroll to result
+            resultFooter.scrollIntoView({ behavior: 'smooth' });
+
+            // Submit the form to Web3Forms
+            form.submit();
+        });
+    </script>
+</body>
+
+</html>
