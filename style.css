@@ -445,11 +445,18 @@
         }
 
         .cta-button-ap {
-            background-color: #212121;
+            background-color: #153C33;
             color: #fff;
             padding: 0.75rem 1.5rem;
             border-radius: 25px;
             font-weight: 600;
             text-decoration: none;
             transition: background-color 0.3s ease;
+        }
+
+        .form-label {
+            font-size: 13px !important;
+        }
+        .form-control{
+            padding: 8px 12px !important;
         }
