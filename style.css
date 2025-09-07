@@ -457,6 +457,38 @@
         .form-label {
             font-size: 13px !important;
         }
-        .form-control{
+
+        .form-control {
             padding: 8px 12px !important;
+        }
+
+        .mb-overlay {
+            background: linear-gradient(90deg, #100727, #10072780);
+            bottom: 0;
+            left: 0;
+            opacity: 0.8;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 1;
+        }
+
+        .gradient-btn {
+            /* background-color: #4589e3; */
+            background: linear-gradient(#5da4ff, #417bff);
+            border: 0;
+            border-radius: 30px;
+            box-shadow: 0 1px 2px #0000004d, inset 0 1px 3px -1px #ffffffe0;
+            text-shadow: #0003 0 -1px 0;
+        }
+
+        .theme-btn {
+            /* background: #09156b; */
+            /* border: none; */
+            /* border-radius: 30px; */
+            color: #fff;
+            font-size: 17px;
+            font-weight: 600;
+            padding: 14px 40px;
+            text-align: center;
         }
