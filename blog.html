@@ -223,10 +223,11 @@
                 <div class="d-flex justify-content-between align-items-center small text-white">
                     <div>
                         <span>
-                            <a href="tel:+919610164989" class="text-white">
+                            <a href="tel:+918970227764" class="text-white">
                                 <i class="material-icons text-sm align-middle">call</i>
                             </a>
-                            +91-9610164989
+                            +91-8970227764
+
                         </span>
                     </div>
                     <div class="d-flex gap-1 gap-md-3">
@@ -318,15 +319,15 @@
 
         <section class="bg-gray-100 py-5" id="Blog">
             <div class="container">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h2 class="fw-bold">LATEST BLOGS</h2>
+                <div class="mb-5">
+                    <h2 class="fw-bold text-center">LATEST BLOGS</h2>
+                    <div class="hr-teal mb-4"></div>
 
                 </div>
-                
+
                 <div class="row g-4">
                     <div class="col-md-4">
-                        <a href="can-your-bMI-and-height-predict-flat-feet.html"
-                            style="text-decoration: none;">
+                        <a href="can-your-bMI-and-height-predict-flat-feet.html" style="text-decoration: none;">
                             <div class="card shadow-sm h-100">
                                 <img alt="Physiotherapy can help you get back on your feet" class="card-img-top"
                                     src="./assets/image/flat-feet.gif" style="height: 200px; object-fit: contain;" />
@@ -351,11 +352,36 @@
             </div>
             </div>
         </section>
+
+        <section id="copyright">
+            <div class="container mt-5">
+                <div class="mb-5 text-center">
+                    <h2 class="fw-bold">Copyright Certificate</h2>
+                    <p class="text-muted mb-1">
+                        Official Copyright Registration (<strong>L-137435/2023</strong>)
+                    </p>
+                    <div class="hr-teal mb-4"></div>
+                    <p class="lead">
+                        We are proud to present our officially registered
+                        <strong>Copyright Certificate</strong>, issued by the Government of India,
+                        protecting the originality and authenticity of our work.
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <img src="/assets/image/copyright.jpg" class="img-fluid rounded shadow"
+                        alt="Copyright Certificate" />
+                </div>
+            </div>
+        </section>
+
+
+
         <div class="d-flex flex-column min-vh-100">
             <main class="flex-grow-1 container pt-5">
-                <section class="d-flex align-items-center justify-content-center py-5" id="Contact-us">
+                <section class="d-flex align-items-center justify-content-center p-5" id="Contact-us">
                     <div class="container">
-                        <div class="bg-white px-4 py-1 p-md-5 rounded shadow-lg w-100">
+                        <div class="bg-white p-5 rounded shadow-lg w-100">
                             <h1 class="display-5 fw-bold text-dark text-center">Contact Us!</h1>
                             <div class="hr-teal mb-4"></div>
                             <div class="row g-5 mt-4">
@@ -445,95 +471,7 @@
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
     <script>
-        // Get DOM elements
-        const form = document.querySelector('form');
-        const nameInput = document.getElementById('name');
-        const mobileInput = document.getElementById('mobile');
-        const ageInput = document.getElementById('age');
-        const bmiInput = document.getElementById('bmi');
-        const heightInput = document.getElementById('height');
-        const heightUnitSelect = document.getElementById('heightUnit');
-        const resultInput = document.getElementById('result');
-        const resultFooter = document.getElementById('resultFooter');
-        const resultValue = document.getElementById('resultValue');
-        const resultInterpretation = document.getElementById('resultInterpretation');
 
-        // Update placeholder dynamically
-        heightUnitSelect.addEventListener('change', () => {
-            const selectedUnit = heightUnitSelect.value;
-            if (selectedUnit === "meter") {
-                heightInput.placeholder = "Enter your height in meters";
-            } else if (selectedUnit === "cm") {
-                heightInput.placeholder = "Enter your height in cm";
-            } else if (selectedUnit === "feet") {
-                heightInput.placeholder = "Enter your height in feet.inches (e.g: 5.5)";
-            }
-        });
-
-        // Event listener for form submission
-        form.addEventListener('submit', async (event) => {
-            event.preventDefault();
-
-            // Get input values
-            const name = nameInput.value.trim();
-            const mobile = mobileInput.value.trim();
-            const age = parseInt(ageInput.value);
-            const bmi = parseFloat(bmiInput.value);
-            let height = parseFloat(heightInput.value);
-            const heightUnit = heightUnitSelect.value;
-
-            // Validate
-            if (!name) return alert('Please enter your name.');
-            if (!mobile || !/^\d{10}$/.test(mobile)) return alert('Please enter a valid 10-digit mobile number.');
-            if (isNaN(age) || age <= 0) return alert('Please enter a valid age.');
-            if (isNaN(bmi) || bmi <= 0) return alert('Please enter a valid BMI.');
-            if (isNaN(height) || height <= 0) return alert('Please enter a valid height.');
-
-            // Convert height to meters
-            if (heightUnit === "cm") {
-                height = height / 100;
-            } else if (heightUnit === "feet") {
-                height = height * 0.3048;
-            }
-
-            // Calculate
-            const archHeightDifference = 0.731 * bmi - 0.471 * height - 8.93;
-            resultInput.value = archHeightDifference.toFixed(4);
-
-            // Show result
-            resultFooter.classList.remove('d-none');
-            resultValue.textContent = `${archHeightDifference.toFixed(4)} mm`;
-
-            if (archHeightDifference >= 10) {
-                resultInterpretation.innerHTML =
-                    `Your Navicular Drop is more than 10 mm, which indicates Acquired flat feet. <br> We recommend booking a consultation at Mittal’s Physiofit Clinic for proper assessment and treatment. <br>
-                    <p class="text-center mt-3"> <a href="https://mittalsphysiofit.com/bookappoitment.html" class="cta-button-ap mt-4">✨ Schedule Your Appointment Today</a></p>`;
-                resultInterpretation.style.color = '#fff';
-            } else {
-                resultInterpretation.innerHTML =
-                    `Your Navicular Drop is less than 10 mm, which suggests your feet are normal and fit. <br> No treatment is required at this stage.`;
-                resultInterpretation.style.color = '#c6f6d5';
-            }
-
-            resultFooter.scrollIntoView({ behavior: 'smooth' });
-
-            // Send data to Web3Forms
-            try {
-                const formData = new FormData(form);
-                const response = await fetch("https://api.web3forms.com/submit", {
-                    method: "POST",
-                    body: formData
-                });
-                const result = await response.json();
-                if (result.success) {
-                    console.log("Data sent successfully ✅");
-                } else {
-                    console.error("Web3Forms error:", result.message);
-                }
-            } catch (error) {
-                console.error("Error sending data:", error);
-            }
-        });
 
         const headings = [
             "Check Your Arch Health in Seconds!",
