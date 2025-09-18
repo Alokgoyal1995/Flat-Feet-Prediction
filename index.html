@@ -44,7 +44,8 @@
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-
+    <!-- Intl Tel Input CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23.7.0/build/css/intlTelInput.min.css">
     <!-- 4. Your Custom Styles -->
 
 
@@ -172,6 +173,45 @@
             }
 
 
+        }
+
+        /* Force match Bootstrap input styles */
+        .country-select,
+        .country-select .country-select-input {
+            width: 100% !important;
+        }
+
+        .country-select .country-select-input {
+            display: block;
+            width: 100%;
+            height: 45px;
+            /* same as other inputs */
+            padding: 0.375rem 0.75rem 0.375rem 2.5rem;
+            /* add left padding for flag */
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #212529;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da !important;
+            border-radius: 0.375rem !important;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+            box-shadow: none !important;
+        }
+
+        /* Match focus style */
+        .country-select .country-select-input:focus {
+            border-color: #86b7fe !important;
+            outline: 0;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, .25) !important;
+        }
+
+        /* Fix flag alignment */
+        .country-select .flag {
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            left: 10px !important;
         }
     </style>
 
@@ -313,7 +353,7 @@
                                 <input type="hidden" name="access_key" value="ba5410a6-bcda-47ff-a322-aa2927fb0ee0">
                                 <input type="hidden" name="subject" value="Flat Feet Prediction Form Submission">
                                 <input type="hidden" name="result" id="result" value="">
-                                <div class="mb-2">
+                                <!-- <div class="mb-2">
                                     <label for="name" class="form-label mb-0">Name</label>
                                     <input type="text" class="form-control" id="name" name="name"
                                         placeholder="Enter your name" required />
@@ -322,7 +362,22 @@
                                     <label for="mobile" class="form-label mb-0">Mobile Number</label>
                                     <input type="tel" class="form-control" id="mobile" name="mobile"
                                         placeholder="Enter your mobile number" required />
+                                </div> -->
+                                <!-- Country Dropdown using intl-tel-input -->
+                                <!-- <div class="mb-3">
+                                    <label for="country" class="form-label mb-0">Country</label>
+                                    <input type="text" class="form-control" id="country" name="country"
+                                        placeholder="Select your country" required />
+                                    <input type="hidden" id="country_code" name="country_code" />
+                                </div> -->
+                                <div class="mb-2">
+                                    <label for="country" class="form-label mb-0">Country</label>
+                                    <input type="text" id="country" name="country" />
                                 </div>
+
+
+
+
                                 <div class="mb-3">
                                     <label for="age" class="form-label mb-0">Age</label>
                                     <input type="number" class="form-control" id="age" name="age"
@@ -598,6 +653,42 @@
 
         carousel.addEventListener('slide.bs.carousel', function (event) {
             headingElement.innerHTML = headings[event.to];
+        });
+
+    </script>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Intl Tel Input JS -->
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@23.7.0/build/js/intlTelInput.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Initialize intl-tel-input
+            const input = document.querySelector("#country");
+            const iti = window.intlTelInput(input, {
+                separateDialCode: false, // Don't show dial code
+                initialCountry: "us", // Default country
+                preferredCountries: ['us', 'gb', 'ca', 'au', 'in'],
+                onlyCountries: [], // Empty means all countries
+                customPlaceholder: function (selectedCountryPlaceholder, selectedCountryData) {
+                    return "Select your country";
+                },
+                utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@23.7.0/build/js/utils.js" // For country data
+            });
+
+            // Update hidden country_code input on country change
+            input.addEventListener("countrychange", function () {
+                const countryData = iti.getSelectedCountryData();
+                $("#country").val(countryData.name); // Set country name in visible input
+                $("#country_code").val(countryData.iso2); // Set ISO2 code in hidden input
+            });
+        });
+
+        $("#country").countrySelect({
+            defaultCountry: "us",
+            preferredCountries: ["us", "in", "gb"],
+            responsiveDropdown: true
         });
 
     </script>
