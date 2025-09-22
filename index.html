@@ -17,16 +17,15 @@
     <meta property="og:title" content="Flat Feet Predictor by Dr Sachendra Kumar Mittal" />
     <meta property="og:description"
         content="Mittal's Regression equation for flat feet prediction by Dr Sachendra Kumar Mittal" />
-    <meta property="og:image" content="https://https://flatfeetpredictor.com/fevicon/android-chrome-512x512.png" />
-    <meta property="og:url" content="https://https://flatfeetpredictor.com" />
+    <meta property="og:image" content="https://flatfeetpredictor.com/fevicon/android-chrome-512x512.png" />
+    <meta property="og:url" content="https://flatfeetpredictor.com" />
     <meta property="og:type" content="website" />
-
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Flat Feet Predictor by Dr Sachendra Kumar Mittal" />
     <meta name="twitter:description"
         content="Mittal's Regression equation for flat feet prediction by Dr Sachendra Kumar Mittal" />
-    <meta name="twitter:image" content="https://https://flatfeetpredictor.com/fevicon/android-chrome-512x512.png" />
+    <meta name="twitter:image" content="https://flatfeetpredictor.com/fevicon/android-chrome-512x512.png" />
 
     <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="16x16" href="/fevicon/favicon-16x16.png" />
@@ -620,11 +619,14 @@
                                     <input type="number" class="form-control" id="age" name="age"
                                         placeholder="Enter your age" required />
                                 </div>
-                                <div class="mb-3">
+                                <div class="mb-0">
                                     <label for="bmi" class="form-label mb-0">BMI</label>
                                     <input type="text" class="form-control" id="bmi" name="bmi"
                                         placeholder="Enter your BMI" required />
                                 </div>
+                                <p class="text-end mb-1"><a href="#" data-bs-toggle="modal"
+                                        data-bs-target="#bmiModal">Don't Know BMI?</a></p>
+
                                 <!-- Height with Dropdown -->
                                 <div class="mb-4">
                                     <label for="height" class="form-label mb-0">Height</label>
@@ -776,6 +778,46 @@
                 <i class="fab fa-whatsapp"></i>
             </a>
         </div>
+
+        <!-- BMI Calculation Modal -->
+        <div class="modal fade" id="bmiModal" tabindex="-1" aria-labelledby="bmiModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="bmiModalLabel">Calculate Your BMI</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="weight" class="form-label">Weight</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" id="weight" placeholder="Enter your weight"
+                                    required />
+                                <select class="form-select" id="weightUnit" style="max-width: 120px;">
+                                    <option value="kg" selected>kg</option>
+                                    <option value="pounds">pounds</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="bmiHeight" class="form-label">Height</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" id="bmiHeight" placeholder="Enter your height"
+                                    required />
+                                <select class="form-select" id="bmiHeightUnit" style="max-width: 120px;">
+                                    <option value="meter">Meter</option>
+                                    <option value="cm" selected>CM</option>
+                                    <option value="feet">Feet</option>
+                                </select>
+                            </div>
+                        </div>
+                        <p id="bmiResult" class="mt-3 text-center fw-bold"></p>
+                        <button type="button" id="calculateBmiBtn" class="btn w-100"
+                            style="background-color: #153C33; color: #fff;">Calculate BMI</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -873,6 +915,61 @@
             } catch (error) {
                 console.error("Error sending data:", error);
             }
+        });
+
+        // BMI Calculation Logic
+        const calculateBmiBtn = document.getElementById('calculateBmiBtn');
+        calculateBmiBtn.addEventListener('click', () => {
+            const weightInput = document.getElementById('weight');
+            const weightUnit = document.getElementById('weightUnit').value;
+            const bmiHeightInput = document.getElementById('bmiHeight');
+            const bmiHeightUnit = document.getElementById('bmiHeightUnit').value;
+            const bmiResult = document.getElementById('bmiResult');
+            const bmiInput = document.getElementById('bmi');
+
+            // Clear previous result
+            bmiResult.textContent = '';
+
+            // Get input values
+            let weight = parseFloat(weightInput.value);
+            let height = parseFloat(bmiHeightInput.value);
+
+            // Validate inputs
+            if (isNaN(weight) || weight <= 0) {
+                bmiResult.textContent = 'Please enter a valid weight.';
+                bmiResult.style.color = 'red';
+                return;
+            }
+
+            if (isNaN(height) || height <= 0) {
+                bmiResult.textContent = 'Please enter a valid height.';
+                bmiResult.style.color = 'red';
+                return;
+            }
+
+            // Convert weight to kg if in pounds
+            if (weightUnit === 'pounds') {
+                weight *= 0.453592;
+            }
+
+            // Convert height to meters
+            if (bmiHeightUnit === 'cm') {
+                height /= 100;
+            } else if (bmiHeightUnit === 'feet') {
+                height *= 0.3048;
+            }
+
+            // Calculate BMI
+            const bmi = weight / (height * height);
+            bmiResult.textContent = `Your BMI is: ${bmi.toFixed(2)}`;
+            bmiResult.style.color = 'green';
+
+            // Update main form's BMI input
+            bmiInput.value = bmi.toFixed(2);
+
+            // Clear modal inputs
+            weightInput.value = '';
+            bmiHeightInput.value = '';
         });
 
         const headings = [
